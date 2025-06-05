@@ -1,0 +1,109 @@
+---
+title: "Coursework"
+author: "up2246287"
+output: 
+  flexdashboard::flex_dashboard:
+---
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+```
+
+Page 1
+=====================================  
+    
+Column {data-width=500}
+-------------------------------------
+    
+### PM10
+    
+```{r}
+Q1_PM10_filtered <- read.csv("data/Q1_cleaned.csv")
+
+ggplot(Q1_PM10_filtered, aes(x = Time, y = PM10, color = Date, group= Date,
+                          text = paste("Date:", Date,
+                                       "<br>Time:", Time,
+                                        "<br>PM10:", PM10))) +
+                    geom_line(size = 0.5) +
+                    geom_point( size = 1) +
+                    labs(title = "PM10 Levels for selcted dates",
+                         x= "Time/Hrs", y= "PM10 (ugm-3/Ref.eq)")  +
+                    theme(axis.text.x = element_text(angle = 90)) 
+
+ggplotly(tooltip = "text")
+```
+   
+Column {data-width=500}
+-------------------------------------
+   
+### Nitric Oxide
+
+```{r}
+Q2_NO_filtered <- read.csv("data/Q2_cleaned.csv")
+ggplot(Q2_NO_filtered, aes(x = Time, y = Nitric_Oxide, color = Date, group= Date,
+                          text = paste("Date:", Date,
+                                       "<br>Time:", Time,
+                                       "<br>Nitric Oxide:", Nitric_Oxide))) +
+                         geom_line(size = 0.5) +
+                         geom_point( size = 1) +
+                        labs(title = "Nitric Oxide Levels for selcted dates",
+                        x= "Time/Hrs", y = "Nitric Oxide (ugm-3)") +
+                        theme(axis.text.x = element_text(angle = 90)) 
+
+ggplotly(tooltip = "text")
+```   
+ 
+### Nitric Oxide as Nitrogen Dioxide
+    
+```{r}
+Q3_NOx_NO2_filtered <- read.csv("data/Q3_cleaned.csv")
+ggplot(Q3_NOx_NO2_filtered, aes(x = Time, y = Nitrogen_Oxides_as_Nitrogen_Dioxide, color = Date, group= Date,
+                        text = paste("Date:", Date,
+                                     "<br>Time:", Time,
+                                     "<br>Nitrogen Oxides as Nitrogen_Dioxide:", Nitrogen_Oxides_as_Nitrogen_Dioxide))) +
+                         geom_line(size = 0.5) +
+                         geom_point( size = 1) +
+                         labs(title = "Nitrogen Oxides as Nitrogen Dioxide Levels for selected dates",
+                         x= "Time/Hrs", y = "Nitrogen Oxides as Nitrogen Dioxide (ugm-3)") +
+                         theme(axis.text.x = element_text(angle = 90)) 
+
+ggplotly(tooltip = "text")
+```
+
+Page 2 {data-orientation=rows}
+=====================================     
+   
+Row {data-height=600}
+-------------------------------------
+
+### MOnthly average 2020
+
+```{r}
+Q4_combined_averages <- read.csv("data/Q4_cleaned.csv")
+ggplot(Q4_combined_averages, aes(fill = Pollutants, x= Month, y = Average)) +
+  geom_bar(position = "dodge", stat= "identity") +
+  labs(title = "Monthly Average of Pollutants",
+       y = "Average (µg/m³)",
+       x = "Months in year 2020")
+
+ggplotly()
+```
+
+Row {data-height=600}
+-------------------------------------
+   
+### Year average
+
+```{r}
+Q5_combined_averages <- read.csv("data/Q5_cleaned.csv")
+ggplot(Q5_combined_averages, aes(fill = Pollutants, x= Year, y = Average)) +
+  geom_bar(position = "dodge", stat= "identity") +
+  labs(title = "Yearly Average of Pollutants",
+       y= "Average(ugm-3)") 
+
+ggplotly()
+```   
+    
+
+
