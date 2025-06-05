@@ -8,12 +8,12 @@ library(plotly)
 library(zoo)
 
 
-df2018 <- read.csv("Data/POAR_2018.csv", skip = 4)
-df2019 <- read.csv("Data/POAR_2019.csv", skip = 4)
-df2020 <- read.csv("Data/POAR_2020.csv", skip = 4)
-df2021 <- read.csv("Data/POAR_2021.csv", skip = 4)
-df2022 <- read.csv("Data/POAR_2022.csv", skip = 4)
-df2023 <- read.csv("Data/POAR_2023.csv", skip = 4)
+df2018 <- read.csv("https://raw.githubusercontent.com/RenetaT/R_exam_prep/refs/heads/main/Coursework/Data/POAR_2018.csv", skip = 4)
+df2019 <- read.csv("https://raw.githubusercontent.com/RenetaT/R_exam_prep/refs/heads/main/Coursework/Data/POAR_2019.csv", skip = 4)
+df2020 <- read.csv("https://raw.githubusercontent.com/RenetaT/R_exam_prep/refs/heads/main/Coursework/Data/POAR_2020.csv", skip = 4)
+df2021 <- read.csv("https://raw.githubusercontent.com/RenetaT/R_exam_prep/refs/heads/main/Coursework/Data/POAR_2021.csv", skip = 4)
+df2022 <- read.csv("https://raw.githubusercontent.com/RenetaT/R_exam_prep/refs/heads/main/Coursework/Data/POAR_2022.csv", skip = 4)
+df2023 <- read.csv("https://raw.githubusercontent.com/RenetaT/R_exam_prep/refs/heads/main/Coursework/Data/POAR_2023.csv", skip = 4)
 
 
 df_total <- bind_rows(df2018, df2019, df2020, df2021, df2022, df2023)
